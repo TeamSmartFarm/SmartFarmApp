@@ -1,3 +1,24 @@
 <resources>
     <string name="app_name">SmartFarmApp</string>
+    <string name="log_recent_log">Recent Log</string>
+
+    <!-- Shared Prefrences -->
+    <string name="user_shared_preef">user_detail</string>
+    <string name="shared_pref_name">User_name</string>
+    <string name="default_username">User</string>
+
+
+    <!-- GCM Parameter -->
+    <string name="SENT_TOKEN_TO_SERVER">token_done</string>
+    <string name="gcm_light">Light</string>
+    <string name="gcm_temp">Temperature</string>
+    <string name="gcm_moisture">Moisture</string>
+    <string name="gcm_water">Water</string>
+    <string name="shared_pref_first_time">FirstTime</string>
+    <string name="token">Token</string>
+    <!--<string name="gcm_defaultSenderId">sender</string>-->
+    <string name="not_sound">sound_setting</string>
+    <string name="not_vibrate">vibrate_setting</string>
+    <string name="gcm_defaultSenderId">201163360293</string>
+
 </resources>

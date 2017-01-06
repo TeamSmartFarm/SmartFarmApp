@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from E:\IDE\AndroidStudio\SmartFarmApp\app\src\main\AndroidManifest.xml:2:1-20:12
+ADDED from E:\IDE\AndroidStudio\SmartFarmApp\app\src\main\AndroidManifest.xml:2:1-69:12
 	package
 		ADDED from E:\IDE\AndroidStudio\SmartFarmApp\app\src\main\AndroidManifest.xml:3:5-42
 		INJECTED from E:\IDE\AndroidStudio\SmartFarmApp\app\src\main\AndroidManifest.xml
@@ -13,42 +13,138 @@ ADDED from E:\IDE\AndroidStudio\SmartFarmApp\app\src\main\AndroidManifest.xml:2:
 	android:versionCode
 		INJECTED from E:\IDE\AndroidStudio\SmartFarmApp\app\src\main\AndroidManifest.xml
 		INJECTED from E:\IDE\AndroidStudio\SmartFarmApp\app\src\main\AndroidManifest.xml
+uses-permission#android.permission.INTERNET
+ADDED from E:\IDE\AndroidStudio\SmartFarmApp\app\src\main\AndroidManifest.xml:6:5-67
+MERGED from [com.google.android.gms:play-services-gcm:9.6.1] E:\IDE\AndroidStudio\SmartFarmApp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\9.6.1\AndroidManifest.xml:21:5-66
+MERGED from [com.google.android.gms:play-services-iid:9.6.1] E:\IDE\AndroidStudio\SmartFarmApp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-iid\9.6.1\AndroidManifest.xml:21:5-66
+	android:name
+		ADDED from E:\IDE\AndroidStudio\SmartFarmApp\app\src\main\AndroidManifest.xml:6:22-64
+uses-permission#android.permission.WAKE_LOCK
+ADDED from E:\IDE\AndroidStudio\SmartFarmApp\app\src\main\AndroidManifest.xml:7:5-68
+	android:name
+		ADDED from E:\IDE\AndroidStudio\SmartFarmApp\app\src\main\AndroidManifest.xml:7:22-65
+uses-permission#com.google.android.c2dm.permission.RECEIVE
+ADDED from E:\IDE\AndroidStudio\SmartFarmApp\app\src\main\AndroidManifest.xml:8:5-82
+MERGED from [com.google.android.gms:play-services-gcm:9.6.1] E:\IDE\AndroidStudio\SmartFarmApp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\9.6.1\AndroidManifest.xml:20:5-81
+MERGED from [com.google.android.gms:play-services-iid:9.6.1] E:\IDE\AndroidStudio\SmartFarmApp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-iid\9.6.1\AndroidManifest.xml:20:5-81
+	android:name
+		ADDED from E:\IDE\AndroidStudio\SmartFarmApp\app\src\main\AndroidManifest.xml:8:22-79
+permission#smartfarm.team.smartfarmapp.permission.C2D_MESSAGE
+ADDED from E:\IDE\AndroidStudio\SmartFarmApp\app\src\main\AndroidManifest.xml:10:5-12:47
+	android:protectionLevel
+		ADDED from E:\IDE\AndroidStudio\SmartFarmApp\app\src\main\AndroidManifest.xml:12:9-44
+	android:name
+		ADDED from E:\IDE\AndroidStudio\SmartFarmApp\app\src\main\AndroidManifest.xml:11:9-74
+uses-permission#smartfarm.team.smartfarmapp.permission.C2D_MESSAGE
+ADDED from E:\IDE\AndroidStudio\SmartFarmApp\app\src\main\AndroidManifest.xml:14:5-90
+	android:name
+		ADDED from E:\IDE\AndroidStudio\SmartFarmApp\app\src\main\AndroidManifest.xml:14:22-87
 application
-ADDED from E:\IDE\AndroidStudio\SmartFarmApp\app\src\main\AndroidManifest.xml:5:5-18:19
+ADDED from E:\IDE\AndroidStudio\SmartFarmApp\app\src\main\AndroidManifest.xml:15:5-67:19
 MERGED from [com.android.support:appcompat-v7:23.4.0] E:\IDE\AndroidStudio\SmartFarmApp\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.4.0\AndroidManifest.xml:25:5-20
 MERGED from [com.android.support:animated-vector-drawable:23.4.0] E:\IDE\AndroidStudio\SmartFarmApp\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\23.4.0\AndroidManifest.xml:7:5-20
 MERGED from [com.android.support:support-vector-drawable:23.4.0] E:\IDE\AndroidStudio\SmartFarmApp\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.4.0\AndroidManifest.xml:7:5-20
-MERGED from [com.android.support:support-v4:23.4.0] E:\IDE\AndroidStudio\SmartFarmApp\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.4.0\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:24.0.0] E:\IDE\AndroidStudio\SmartFarmApp\app\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:25:5-20
+MERGED from [com.google.android.gms:play-services-gcm:9.6.1] E:\IDE\AndroidStudio\SmartFarmApp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\9.6.1\AndroidManifest.xml:23:5-19
+MERGED from [com.google.android.gms:play-services-base:9.6.1] E:\IDE\AndroidStudio\SmartFarmApp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\9.6.1\AndroidManifest.xml:18:5-20:19
+MERGED from [com.google.android.gms:play-services-basement:9.6.1] E:\IDE\AndroidStudio\SmartFarmApp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\9.6.1\AndroidManifest.xml:19:5-21:19
+MERGED from [com.google.android.gms:play-services-tasks:9.6.1] E:\IDE\AndroidStudio\SmartFarmApp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-tasks\9.6.1\AndroidManifest.xml:4:5-19
+MERGED from [com.google.android.gms:play-services-iid:9.6.1] E:\IDE\AndroidStudio\SmartFarmApp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-iid\9.6.1\AndroidManifest.xml:23:5-19
+MERGED from [com.android.volley:volley:1.0.0] E:\IDE\AndroidStudio\SmartFarmApp\app\build\intermediates\exploded-aar\com.android.volley\volley\1.0.0\AndroidManifest.xml:9:5-20
 	android:label
-		ADDED from E:\IDE\AndroidStudio\SmartFarmApp\app\src\main\AndroidManifest.xml:8:9-41
+		ADDED from E:\IDE\AndroidStudio\SmartFarmApp\app\src\main\AndroidManifest.xml:18:9-41
 	android:supportsRtl
-		ADDED from E:\IDE\AndroidStudio\SmartFarmApp\app\src\main\AndroidManifest.xml:9:9-35
+		ADDED from E:\IDE\AndroidStudio\SmartFarmApp\app\src\main\AndroidManifest.xml:19:9-35
 	android:allowBackup
-		ADDED from E:\IDE\AndroidStudio\SmartFarmApp\app\src\main\AndroidManifest.xml:6:9-35
+		ADDED from E:\IDE\AndroidStudio\SmartFarmApp\app\src\main\AndroidManifest.xml:16:9-35
 	android:icon
-		ADDED from E:\IDE\AndroidStudio\SmartFarmApp\app\src\main\AndroidManifest.xml:7:9-43
+		ADDED from E:\IDE\AndroidStudio\SmartFarmApp\app\src\main\AndroidManifest.xml:17:9-43
 	android:theme
-		ADDED from E:\IDE\AndroidStudio\SmartFarmApp\app\src\main\AndroidManifest.xml:10:9-40
-activity#smartfarm.team.smartfarmapp.LogActivity
-ADDED from E:\IDE\AndroidStudio\SmartFarmApp\app\src\main\AndroidManifest.xml:11:9-17:20
+		ADDED from E:\IDE\AndroidStudio\SmartFarmApp\app\src\main\AndroidManifest.xml:20:9-40
+activity#log.LogActivity
+ADDED from E:\IDE\AndroidStudio\SmartFarmApp\app\src\main\AndroidManifest.xml:21:9-27:20
 	android:name
-		ADDED from E:\IDE\AndroidStudio\SmartFarmApp\app\src\main\AndroidManifest.xml:11:19-46
+		ADDED from E:\IDE\AndroidStudio\SmartFarmApp\app\src\main\AndroidManifest.xml:21:19-49
 intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
-ADDED from E:\IDE\AndroidStudio\SmartFarmApp\app\src\main\AndroidManifest.xml:12:13-16:29
+ADDED from E:\IDE\AndroidStudio\SmartFarmApp\app\src\main\AndroidManifest.xml:22:13-26:29
 action#android.intent.action.MAIN
-ADDED from E:\IDE\AndroidStudio\SmartFarmApp\app\src\main\AndroidManifest.xml:13:17-69
+ADDED from E:\IDE\AndroidStudio\SmartFarmApp\app\src\main\AndroidManifest.xml:23:17-69
 	android:name
-		ADDED from E:\IDE\AndroidStudio\SmartFarmApp\app\src\main\AndroidManifest.xml:13:25-66
+		ADDED from E:\IDE\AndroidStudio\SmartFarmApp\app\src\main\AndroidManifest.xml:23:25-66
 category#android.intent.category.LAUNCHER
-ADDED from E:\IDE\AndroidStudio\SmartFarmApp\app\src\main\AndroidManifest.xml:15:17-77
+ADDED from E:\IDE\AndroidStudio\SmartFarmApp\app\src\main\AndroidManifest.xml:25:17-77
 	android:name
-		ADDED from E:\IDE\AndroidStudio\SmartFarmApp\app\src\main\AndroidManifest.xml:15:27-74
+		ADDED from E:\IDE\AndroidStudio\SmartFarmApp\app\src\main\AndroidManifest.xml:25:27-74
+receiver#gcm.sendRequestResponseBroadcast
+ADDED from E:\IDE\AndroidStudio\SmartFarmApp\app\src\main\AndroidManifest.xml:30:9-34:20
+	android:name
+		ADDED from E:\IDE\AndroidStudio\SmartFarmApp\app\src\main\AndroidManifest.xml:30:19-66
+intent-filter#smartfarm.team.smartfarmapp.SEND_REQUEST_RESPONSE
+ADDED from E:\IDE\AndroidStudio\SmartFarmApp\app\src\main\AndroidManifest.xml:31:13-33:29
+action#smartfarm.team.smartfarmapp.SEND_REQUEST_RESPONSE
+ADDED from E:\IDE\AndroidStudio\SmartFarmApp\app\src\main\AndroidManifest.xml:32:17-92
+	android:name
+		ADDED from E:\IDE\AndroidStudio\SmartFarmApp\app\src\main\AndroidManifest.xml:32:25-89
+receiver#com.google.android.gms.gcm.GcmReceiver
+ADDED from E:\IDE\AndroidStudio\SmartFarmApp\app\src\main\AndroidManifest.xml:37:9-47:20
+	android:exported
+		ADDED from E:\IDE\AndroidStudio\SmartFarmApp\app\src\main\AndroidManifest.xml:39:13-36
+	android:permission
+		ADDED from E:\IDE\AndroidStudio\SmartFarmApp\app\src\main\AndroidManifest.xml:40:13-73
+	android:name
+		ADDED from E:\IDE\AndroidStudio\SmartFarmApp\app\src\main\AndroidManifest.xml:38:13-66
+intent-filter#com.google.android.c2dm.intent.RECEIVE+com.google.android.c2dm.intent.REGISTRATION+smartfarm.team.smartfarmapp
+ADDED from E:\IDE\AndroidStudio\SmartFarmApp\app\src\main\AndroidManifest.xml:41:13-46:29
+action#com.google.android.c2dm.intent.RECEIVE
+ADDED from E:\IDE\AndroidStudio\SmartFarmApp\app\src\main\AndroidManifest.xml:42:17-81
+	android:name
+		ADDED from E:\IDE\AndroidStudio\SmartFarmApp\app\src\main\AndroidManifest.xml:42:25-78
+action#com.google.android.c2dm.intent.REGISTRATION
+ADDED from E:\IDE\AndroidStudio\SmartFarmApp\app\src\main\AndroidManifest.xml:43:17-86
+	android:name
+		ADDED from E:\IDE\AndroidStudio\SmartFarmApp\app\src\main\AndroidManifest.xml:43:25-83
+category#smartfarm.team.smartfarmapp
+ADDED from E:\IDE\AndroidStudio\SmartFarmApp\app\src\main\AndroidManifest.xml:45:17-72
+	android:name
+		ADDED from E:\IDE\AndroidStudio\SmartFarmApp\app\src\main\AndroidManifest.xml:45:27-69
+service#gcm.GCMListener
+ADDED from E:\IDE\AndroidStudio\SmartFarmApp\app\src\main\AndroidManifest.xml:49:9-55:19
+	android:exported
+		ADDED from E:\IDE\AndroidStudio\SmartFarmApp\app\src\main\AndroidManifest.xml:51:13-37
+	android:name
+		ADDED from E:\IDE\AndroidStudio\SmartFarmApp\app\src\main\AndroidManifest.xml:50:13-43
+intent-filter#com.google.android.c2dm.intent.RECEIVE
+ADDED from E:\IDE\AndroidStudio\SmartFarmApp\app\src\main\AndroidManifest.xml:52:13-54:29
+service#gcm.MyInstanceID
+ADDED from E:\IDE\AndroidStudio\SmartFarmApp\app\src\main\AndroidManifest.xml:56:9-62:19
+	android:exported
+		ADDED from E:\IDE\AndroidStudio\SmartFarmApp\app\src\main\AndroidManifest.xml:58:13-37
+	android:name
+		ADDED from E:\IDE\AndroidStudio\SmartFarmApp\app\src\main\AndroidManifest.xml:57:13-44
+intent-filter#com.google.android.gms.iid.InstanceID
+ADDED from E:\IDE\AndroidStudio\SmartFarmApp\app\src\main\AndroidManifest.xml:59:13-61:29
+action#com.google.android.gms.iid.InstanceID
+ADDED from E:\IDE\AndroidStudio\SmartFarmApp\app\src\main\AndroidManifest.xml:60:17-80
+	android:name
+		ADDED from E:\IDE\AndroidStudio\SmartFarmApp\app\src\main\AndroidManifest.xml:60:25-77
+service#gcm.RegistrationIntentService
+ADDED from E:\IDE\AndroidStudio\SmartFarmApp\app\src\main\AndroidManifest.xml:63:9-65:40
+	android:exported
+		ADDED from E:\IDE\AndroidStudio\SmartFarmApp\app\src\main\AndroidManifest.xml:65:13-37
+	android:name
+		ADDED from E:\IDE\AndroidStudio\SmartFarmApp\app\src\main\AndroidManifest.xml:64:13-57
 uses-sdk
 INJECTED from E:\IDE\AndroidStudio\SmartFarmApp\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 MERGED from [com.android.support:appcompat-v7:23.4.0] E:\IDE\AndroidStudio\SmartFarmApp\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.4.0\AndroidManifest.xml:21:5-23:78
 MERGED from [com.android.support:animated-vector-drawable:23.4.0] E:\IDE\AndroidStudio\SmartFarmApp\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\23.4.0\AndroidManifest.xml:5:5-44
 MERGED from [com.android.support:support-vector-drawable:23.4.0] E:\IDE\AndroidStudio\SmartFarmApp\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.4.0\AndroidManifest.xml:5:5-43
-MERGED from [com.android.support:support-v4:23.4.0] E:\IDE\AndroidStudio\SmartFarmApp\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.4.0\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-v4:24.0.0] E:\IDE\AndroidStudio\SmartFarmApp\app\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:21:5-23:54
+MERGED from [com.google.android.gms:play-services-gcm:9.6.1] E:\IDE\AndroidStudio\SmartFarmApp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\9.6.1\AndroidManifest.xml:17:5-42
+MERGED from [com.google.android.gms:play-services-base:9.6.1] E:\IDE\AndroidStudio\SmartFarmApp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\9.6.1\AndroidManifest.xml:17:5-42
+MERGED from [com.google.android.gms:play-services-basement:9.6.1] E:\IDE\AndroidStudio\SmartFarmApp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\9.6.1\AndroidManifest.xml:17:5-42
+MERGED from [com.google.android.gms:play-services-tasks:9.6.1] E:\IDE\AndroidStudio\SmartFarmApp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-tasks\9.6.1\AndroidManifest.xml:3:5-42
+MERGED from [com.google.android.gms:play-services-iid:9.6.1] E:\IDE\AndroidStudio\SmartFarmApp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-iid\9.6.1\AndroidManifest.xml:17:5-42
+MERGED from [com.android.volley:volley:1.0.0] E:\IDE\AndroidStudio\SmartFarmApp\app\build\intermediates\exploded-aar\com.android.volley\volley\1.0.0\AndroidManifest.xml:7:5-43
 	tools:overrideLibrary
 		ADDED from [com.android.support:appcompat-v7:23.4.0] E:\IDE\AndroidStudio\SmartFarmApp\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.4.0\AndroidManifest.xml:23:9-75
 	android:targetSdkVersion
@@ -57,3 +153,17 @@ MERGED from [com.android.support:support-v4:23.4.0] E:\IDE\AndroidStudio\SmartFa
 	android:minSdkVersion
 		INJECTED from E:\IDE\AndroidStudio\SmartFarmApp\app\src\main\AndroidManifest.xml
 		INJECTED from E:\IDE\AndroidStudio\SmartFarmApp\app\src\main\AndroidManifest.xml
+activity#com.google.android.gms.common.api.GoogleApiActivity
+ADDED from [com.google.android.gms:play-services-base:9.6.1] E:\IDE\AndroidStudio\SmartFarmApp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\9.6.1\AndroidManifest.xml:19:9-172
+	android:exported
+		ADDED from [com.google.android.gms:play-services-base:9.6.1] E:\IDE\AndroidStudio\SmartFarmApp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\9.6.1\AndroidManifest.xml:19:146-170
+	android:theme
+		ADDED from [com.google.android.gms:play-services-base:9.6.1] E:\IDE\AndroidStudio\SmartFarmApp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\9.6.1\AndroidManifest.xml:19:86-145
+	android:name
+		ADDED from [com.google.android.gms:play-services-base:9.6.1] E:\IDE\AndroidStudio\SmartFarmApp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\9.6.1\AndroidManifest.xml:19:19-85
+meta-data#com.google.android.gms.version
+ADDED from [com.google.android.gms:play-services-basement:9.6.1] E:\IDE\AndroidStudio\SmartFarmApp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\9.6.1\AndroidManifest.xml:20:9-121
+	android:value
+		ADDED from [com.google.android.gms:play-services-basement:9.6.1] E:\IDE\AndroidStudio\SmartFarmApp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\9.6.1\AndroidManifest.xml:20:66-119
+	android:name
+		ADDED from [com.google.android.gms:play-services-basement:9.6.1] E:\IDE\AndroidStudio\SmartFarmApp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\9.6.1\AndroidManifest.xml:20:20-65

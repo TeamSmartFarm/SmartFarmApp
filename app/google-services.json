@@ -1,0 +1,35 @@
+{
+  "project_info": {
+    "project_number": "201163360293",
+    "project_id": "smartfarmapp-154818"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:201163360293:android:54b7ed2a23601773",
+        "android_client_info": {
+          "package_name": "smartfarm.team.smartfarmapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9zBagXQzcJr6B3zOPjedxg76lN_YoEeA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
