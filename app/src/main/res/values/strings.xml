@@ -20,5 +20,8 @@
     <string name="not_sound">sound_setting</string>
     <string name="not_vibrate">vibrate_setting</string>
     <string name="gcm_defaultSenderId">201163360293</string>
+    <string name="shared_main_name">saved_details</string>
+    <string name="shared_farm_id">Farm Id</string>
+    <string name="shared_first_time">First_Time</string>
 
 </resources>
