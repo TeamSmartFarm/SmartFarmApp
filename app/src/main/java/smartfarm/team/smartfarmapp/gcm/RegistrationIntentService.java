@@ -19,8 +19,8 @@ import java.util.HashMap;
 import java.util.Map;
 import smartfarm.team.smartfarmapp.log.LogActivity;
 import smartfarm.team.smartfarmapp.R;
-import util.Constant;
-import util.ServerRequest;
+import smartfarm.team.smartfarmapp.util.Constant;
+import smartfarm.team.smartfarmapp.util.ServerRequest;
 
 public class RegistrationIntentService extends IntentService {
     private static final String TAG = "RegIntentService";
@@ -97,9 +97,9 @@ public class RegistrationIntentService extends IntentService {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> param = new HashMap<>();
-                SharedPreferences userDetail = LogActivity.thisAct.
-                        getSharedPreferences(getString(R.string.user_shared_preef), Context.MODE_PRIVATE);
-                param.put("UserID","1");// userDetail.getString(getString(R.string.shared_pref_name),getString(R.string.default_username)));
+                SharedPreferences details = LogActivity.thisAct.
+                        getSharedPreferences(getString(R.string.shared_pref_name), Context.MODE_PRIVATE);
+                param.put("UserID",details.getString(getString(R.string.shared_farm_id),"001"));
                 param.put("IID", token);
                 return param;
             }
