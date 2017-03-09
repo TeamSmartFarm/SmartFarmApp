@@ -17,7 +17,8 @@ import com.google.android.gms.iid.InstanceID;
 
 import java.util.HashMap;
 import java.util.Map;
-import smartfarm.team.smartfarmapp.log.LogActivity;
+
+import smartfarm.team.smartfarmapp.HomePage.MainActivity;
 import smartfarm.team.smartfarmapp.R;
 import smartfarm.team.smartfarmapp.util.Constant;
 import smartfarm.team.smartfarmapp.util.ServerRequest;
@@ -97,8 +98,8 @@ public class RegistrationIntentService extends IntentService {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> param = new HashMap<>();
-                SharedPreferences details = LogActivity.thisAct.
-                        getSharedPreferences(getString(R.string.shared_pref_name), Context.MODE_PRIVATE);
+                SharedPreferences details = MainActivity.thisAct.
+                        getSharedPreferences(getString(R.string.shared_main_name), Context.MODE_PRIVATE);
                 param.put("UserID",details.getString(getString(R.string.shared_farm_id),"001"));
                 param.put("IID", token);
                 return param;

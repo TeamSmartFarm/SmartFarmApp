@@ -9,7 +9,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
-import smartfarm.team.smartfarmapp.log.LogActivity;
+import smartfarm.team.smartfarmapp.HomePage.MainActivity;
 import smartfarm.team.smartfarmapp.signup.SignUpActivity;
 
 import static java.lang.Thread.sleep;
@@ -44,7 +44,7 @@ public class SplashActivity extends AppCompatActivity {
                     if (details.getBoolean(getString(R.string.shared_first_time), true)) {
                         intent = new Intent(SplashActivity.this, SignUpActivity.class);
                     } else {
-                        intent = new Intent(SplashActivity.this, LogActivity.class);
+                        intent = new Intent(SplashActivity.this, MainActivity.class);
                     }
                     startActivity(intent);
                     finish();

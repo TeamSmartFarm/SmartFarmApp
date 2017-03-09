@@ -39,8 +39,7 @@ public class LogListViewAdapter extends ArrayAdapter<String> {
         event = (TextView) row.findViewById(R.id.rowEvent);
         status = (TextView) row.findViewById(R.id.rowStatus);
     //    try {
-            String messageBody = "Temperature: "+data[2]+"\tLight: " + data[0] +
-                    "\nMoisture: "+data[3] + "\tWater: "+data[1];
+            String messageBody = "Temperature: "+data[2]+"\tLight: " + data[0] + "\tWater: "+data[1];
             event.setText(messageBody);
 
 //

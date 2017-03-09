@@ -11,12 +11,12 @@
     tools:context="smartfarm.team.smartfarmapp.SplashActivity">
 
     <TextView
-        android:text="TextView"
+        android:text="@string/smart_farm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
         android:id="@+id/textView2"
         tools:text="Smart Farm"
-        android:textAppearance="@android:style/TextAppearance.Material.Display3" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Display3"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>

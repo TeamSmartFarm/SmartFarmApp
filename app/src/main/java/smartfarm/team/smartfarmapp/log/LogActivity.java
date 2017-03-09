@@ -26,10 +26,10 @@ public class LogActivity extends AppCompatActivity {
 
         Intent dataIntent = getIntent();
         String array[] = new String[]{
-                dataIntent.getStringExtra(getString(R.string.gcm_light)),
+                dataIntent.getStringExtra(getString(R.string.gcm_end_light)),
                 dataIntent.getStringExtra(getString(R.string.gcm_water)),
-                dataIntent.getStringExtra(getString(R.string.gcm_temp)),
-                dataIntent.getStringExtra(getString(R.string.gcm_moisture))
+                dataIntent.getStringExtra(getString(R.string.gcm_start_light)),
+                //dataIntent.getStringExtra(getString(R.string.gcm_moisture))
         };
 
         LogListViewAdapter adapter = new LogListViewAdapter(LogActivity.this,array);

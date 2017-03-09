@@ -11,16 +11,19 @@
     <!-- GCM Parameter -->
     <string name="SENT_TOKEN_TO_SERVER">token_done</string>
     <string name="gcm_light">Light</string>
-    <string name="gcm_temp">Temperature</string>
+    <string name="gcm_start_temp">initialTemperature</string>
+    <string name="gcm_end_temp">finalTemperature</string>
+    <string name="gcm_start_light">initialLight</string>
+    <string name="gcm_end_light">finalLight</string>
     <string name="gcm_moisture">Moisture</string>
-    <string name="gcm_water">Water</string>
+    <string name="gcm_water">waterConsumption</string>
     <string name="shared_pref_first_time">FirstTime</string>
     <string name="token">Token</string>
     <!--<string name="gcm_defaultSenderId">sender</string>-->
 
     <string name="not_sound">sound_setting</string>
     <string name="not_vibrate">vibrate_setting</string>
-    <string name="gcm_defaultSenderId">201163360293</string>
+    <string name="gcm_defaultSenderId">936042723281</string>
 
     <string name="shared_main_name">saved_details</string>
     <string name="shared_farm_id">Farm Id</string>
@@ -35,5 +38,9 @@
     <string name="signup_done">Done</string>
     <string name="shared_name">Shared Name</string>
     <string name="title_activity_notification">NotificationActivity</string>
+    <string name="smart_farm">Smart Farm</string>
+    <string name="main_crops">Crops</string>
+    <string name="main_notification">Notification</string>
+    <string name="main_suggestion">Suggestion</string>
 
 </resources>

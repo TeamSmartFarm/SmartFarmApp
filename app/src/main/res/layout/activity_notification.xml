@@ -72,6 +72,7 @@
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/start_temp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -119,6 +120,7 @@
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/end_temp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -176,6 +178,7 @@
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/start_light"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -224,6 +227,7 @@
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/end_light"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -269,6 +273,7 @@
             </LinearLayout>
 
             <TextView
+                android:id="@+id/water"
                 android:text="550"
                 android:layout_gravity="center"
                 android:layout_marginBottom="15dp"

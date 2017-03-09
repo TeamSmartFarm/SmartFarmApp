@@ -21,9 +21,9 @@ import com.google.zxing.integration.android.IntentIntegrator;
 import java.util.HashMap;
 import java.util.Map;
 
+import smartfarm.team.smartfarmapp.HomePage.MainActivity;
 import smartfarm.team.smartfarmapp.R;
 import smartfarm.team.smartfarmapp.gcm.RegistrationIntentService;
-import smartfarm.team.smartfarmapp.log.LogActivity;
 import smartfarm.team.smartfarmapp.util.Constant;
 import smartfarm.team.smartfarmapp.util.ServerRequest;
 
@@ -56,7 +56,7 @@ public class SignUpActivity extends AppCompatActivity {
 
         barcodeScan();
 
-        details = getSharedPreferences(getString(R.string.shared_pref_name),MODE_PRIVATE);
+        details = getSharedPreferences(getString(R.string.shared_main_name),MODE_PRIVATE);
 
         location.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,7 +93,6 @@ public class SignUpActivity extends AppCompatActivity {
             editor.putBoolean(getString(R.string.shared_first_time), false);
             editor.apply();
 
-            details = getSharedPreferences(getString(R.string.shared_pref_name),MODE_PRIVATE);
             farm_id.setText(details.getString(getString(R.string.shared_farm_id),"005"));
 
             barcode_load.cancel();
@@ -109,7 +108,6 @@ public class SignUpActivity extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String result) {
-                        if (result.equals("True")) {
                             load.dismiss();
 
                             //Register IID
@@ -120,15 +118,10 @@ public class SignUpActivity extends AppCompatActivity {
                             startService(intent);
 
                             //going to profile page
-                            Intent mnsr = new Intent(SignUpActivity.this, LogActivity.class);
+                            Intent mnsr = new Intent(SignUpActivity.this, MainActivity.class);
                             startActivity(mnsr);
                             finish();
 
-                        } else {
-                            load.dismiss();
-                            Toast.makeText(getApplicationContext(),
-                                    "Some Error Occurred....Try Latter", Toast.LENGTH_LONG).show();
-                        }
                     }
                 },
                 new Response.ErrorListener() {

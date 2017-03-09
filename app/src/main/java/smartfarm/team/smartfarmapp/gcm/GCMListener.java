@@ -14,10 +14,6 @@ import android.util.Log;
 
 import com.google.android.gms.gcm.GcmListenerService;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import smartfarm.team.smartfarmapp.log.LogActivity;
 import smartfarm.team.smartfarmapp.R;
 
 public class GCMListener extends GcmListenerService {
@@ -41,29 +37,34 @@ public class GCMListener extends GcmListenerService {
 
         if (!data.isEmpty()) {
             try {
-                JSONObject jsonObject = new JSONObject(data.getString("msg"));
-                handleReceivedRequest(jsonObject);
-            } catch (JSONException e) {
+
+                //JSONObject jsonObject = new JSONObject(data.getString("msg"));
+                handleReceivedRequest(data);
+            } catch (Exception e) {
             }
         }
     }
 
-    private void handleReceivedRequest(JSONObject message) {
+    private void handleReceivedRequest(Bundle message) {
         try {
             NotificationManager mNotificationManager =
                     (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
-            String light = message.getString("light");
-            String temp = message.getString("temprature");
+            String start_light = message.getString(getString(R.string.gcm_start_light));
+            String end_light = message.getString(getString(R.string.gcm_end_light));
+            String start_temp = message.getString(getString(R.string.gcm_start_temp));
+            String end_temp = message.getString(getString(R.string.gcm_end_temp));
             String water = message.getString("waterConsumption");
-            String moisture = message.getString("moisture");
+            //String moisture = message.getString("moisture");
 
 
             // Intent to go to app
-            Intent notificationIntent = new Intent(this, LogActivity.class);;
-            notificationIntent.putExtra(getString(R.string.gcm_light),light);
-            notificationIntent.putExtra(getString(R.string.gcm_moisture),moisture);
-            notificationIntent.putExtra(getString(R.string.gcm_temp),temp);
+            Intent notificationIntent = new Intent(this, NotificationActivity.class);;
+            notificationIntent.putExtra(getString(R.string.gcm_start_light),start_light);
+            notificationIntent.putExtra(getString(R.string.gcm_end_light),end_light);
+            //notificationIntent.putExtra(getString(R.string.gcm_moisture),moisture);
+            notificationIntent.putExtra(getString(R.string.gcm_start_temp),start_temp);
+            notificationIntent.putExtra(getString(R.string.gcm_end_temp),end_temp);
             notificationIntent.putExtra(getString(R.string.gcm_water),water);
             Log.e("Request_received", "true");
             PendingIntent contentIntent =
@@ -71,8 +72,8 @@ public class GCMListener extends GcmListenerService {
 
             // Create Notification Builder
             String messageTitle = "Irrigation Done";
-            String messageBody = "Temperature: "+temp+"\tLight: " + light +
-                    "\nMoisture: "+moisture + "\tWater: "+water;
+            String messageBody = "Temperature: "+start_temp+"\tLight: " + start_light +
+                    "\nWater: "+water;
 
             Bitmap largeIcon = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
             NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this)
@@ -84,6 +85,7 @@ public class GCMListener extends GcmListenerService {
                     .setContentText(messageBody)
                     .setPriority(NotificationCompat.PRIORITY_HIGH)
                     .setAutoCancel(true)
+                    .setContentIntent(contentIntent)
                     .setNumber(++NOTIFICATION_NUM);
 
             // Publish Notification
@@ -102,7 +104,7 @@ public class GCMListener extends GcmListenerService {
                 mBuilder.setDefaults(Notification.DEFAULT_LIGHTS);
 
             mNotificationManager.notify(NOTIFICATION_ID, mBuilder.build());
-        } catch (JSONException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             Log.e("Notification error", e.toString());
         }
