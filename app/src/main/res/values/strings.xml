@@ -42,5 +42,19 @@
     <string name="main_crops">Crops</string>
     <string name="main_notification">Notification</string>
     <string name="main_suggestion">Suggestion</string>
+    <string name="shared_previous_not">Previous Notification</string>
+    <string name="draw_farm_instruction">Move the Cross to draw farm shape</string>
+    <string name="done">Done</string>
+    <string name="shared_farm_coordinates">Farm_Coordinates</string>
+    <string name="cross1_x_coord">Cross1_X</string>
+    <string name="cross1_y_coord">Cross1_Y</string>
+    <string name="cross2_x_coord">Cross2_X</string>
+    <string name="cross2_y_coord">Cross2_Y</string>
+    <string name="cross3_x_coord">Cross3_X</string>
+    <string name="cross3_y_coord">Cross3_Y</string>
+    <string name="cross4_x_coord">Cross4_X</string>
+    <string name="cross4_y_coord">Cross4_X</string>
+    <string name="set_up_done">Set Up Done</string>
+    <string name="edit">Edit</string>
 
 </resources>

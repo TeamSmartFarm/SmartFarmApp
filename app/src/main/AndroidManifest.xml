@@ -55,7 +55,8 @@
             android:name=".gcm.RegistrationIntentService"
             android:exported="false" />
 
-        <activity android:name=".SplashActivity"
+        <activity
+            android:name=".SplashActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -67,13 +68,14 @@
         <activity
             android:name=".gcm.NotificationActivity"
             android:label="@string/title_activity_notification"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".HomePage.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".HomePage.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".Crop.CropActivity" />
         <activity android:name=".Suggestion.SuggestionActivity" />
-        <activity android:name=".Crop.CropDescriptionActivity"/>
+        <activity android:name=".Crop.CropDescriptionActivity" />
+        <activity android:name=".farm.SetUpFarm"></activity>
     </application>
 
 </manifest>
