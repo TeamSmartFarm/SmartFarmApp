@@ -58,5 +58,11 @@
     <string name="set_up_done">Set Up Done</string>
     <string name="edit">Edit</string>
     <string name="choose_farm_shape">Choose Farm Shape</string>
+    <string name="nill">Nill</string>
+    <string name="less">Less</string>
+    <string name="moderate">Moderate</string>
+    <string name="medium">Medium</string>
+    <string name="excess">Excess</string>
+    <string name="full">Full</string>
 
 </resources>

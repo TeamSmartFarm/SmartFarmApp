@@ -11,7 +11,7 @@ import android.widget.Button;
 import smartfarm.team.smartfarmapp.Crop.CropActivity;
 import smartfarm.team.smartfarmapp.R;
 import smartfarm.team.smartfarmapp.Suggestion.SuggestionActivity;
-import smartfarm.team.smartfarmapp.farm.FarmTypeActivity;
+import smartfarm.team.smartfarmapp.farm.WeightSliderActivity;
 import smartfarm.team.smartfarmapp.gcm.RegistrationIntentService;
 
 import static smartfarm.team.smartfarmapp.R.id.notification;
@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void notificationClick() {
-        Intent intent=new Intent(MainActivity.this,FarmTypeActivity.class);
+        Intent intent=new Intent(MainActivity.this,WeightSliderActivity.class);
         startActivity(intent);
     }
 }
