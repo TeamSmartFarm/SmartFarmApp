@@ -10,7 +10,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
-    tools:context="smartfarm.team.smartfarmapp.farm.SetUpFarm">
+    tools:context="smartfarm.team.smartfarmapp.farm.SetUpFarmActivity">
 
     <TextView
         android:text="@string/draw_farm_instruction"
@@ -48,6 +48,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:srcCompat="@android:drawable/ic_menu_close_clear_cancel"
-            android:id="@+id/cross4" />
+            android:id="@+id/cross4"
+            android:layout_toEndOf="@+id/cross1" />
     </RelativeLayout>
 </LinearLayout>

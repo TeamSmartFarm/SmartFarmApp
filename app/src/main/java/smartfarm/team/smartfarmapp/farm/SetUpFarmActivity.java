@@ -16,7 +16,7 @@ import android.widget.Toast;
 
 import smartfarm.team.smartfarmapp.R;
 
-public class SetUpFarm extends AppCompatActivity {
+public class SetUpFarmActivity extends AppCompatActivity {
 
     ImageView cross1, cross2, cross3, cross4;
     RelativeLayout farm;
@@ -35,13 +35,14 @@ public class SetUpFarm extends AppCompatActivity {
 
     private void setup() {
         if (coordinates.getBoolean(getString(R.string.set_up_done), false)) {
-            FarmView farmView = new FarmView(SetUpFarm.this);
+            FarmView farmView = new FarmView(SetUpFarmActivity.this);
             farmView.setBackgroundColor(Color.WHITE);
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
             farmView.setLayoutParams(params);
             farm.removeAllViews();
             farm.addView(farmView);
+//            Toast.makeText(SetUpFarmActivity.this,"s",Toast.LENGTH_SHORT).show();
         } else {
             farm = (RelativeLayout) findViewById(R.id.farm);
 
@@ -86,7 +87,7 @@ public class SetUpFarm extends AppCompatActivity {
             editor.apply();
             invalidateOptionsMenu();
             setup();
-            Toast.makeText(SetUpFarm.this, "Done", Toast.LENGTH_SHORT).show();
+            Toast.makeText(SetUpFarmActivity.this, "Done", Toast.LENGTH_SHORT).show();
 
 
         }
@@ -123,7 +124,7 @@ public class SetUpFarm extends AppCompatActivity {
                         break;
 
                     case MotionEvent.ACTION_UP:
-//                        Toast.makeText(SetUpFarm.this,
+//                        Toast.makeText(SetUpFarmActivity.this,
 //                                "thanks for new location!", Toast.LENGTH_SHORT)
 //                                .show();
                         break;

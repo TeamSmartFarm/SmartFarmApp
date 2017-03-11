@@ -71,11 +71,13 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".HomePage.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Crop.CropActivity" />
         <activity android:name=".Suggestion.SuggestionActivity" />
         <activity android:name=".Crop.CropDescriptionActivity" />
-        <activity android:name=".farm.SetUpFarm"></activity>
+        <activity android:name=".farm.SetUpFarmActivity" />
+        <activity android:name=".farm.FarmTypeActivity" />
+        <activity android:name=".farm.WeightSliderActivity"></activity>
     </application>
 
 </manifest>

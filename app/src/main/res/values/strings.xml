@@ -36,6 +36,7 @@
     <string name="signup_contact_no">Contact No</string>
     <string name="signup_location">Location</string>
     <string name="signup_done">Done</string>
+
     <string name="shared_name">Shared Name</string>
     <string name="title_activity_notification">NotificationActivity</string>
     <string name="smart_farm">Smart Farm</string>
@@ -53,8 +54,9 @@
     <string name="cross3_x_coord">Cross3_X</string>
     <string name="cross3_y_coord">Cross3_Y</string>
     <string name="cross4_x_coord">Cross4_X</string>
-    <string name="cross4_y_coord">Cross4_X</string>
+    <string name="cross4_y_coord">Cross4_Y</string>
     <string name="set_up_done">Set Up Done</string>
     <string name="edit">Edit</string>
+    <string name="choose_farm_shape">Choose Farm Shape</string>
 
 </resources>
