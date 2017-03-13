@@ -1,24 +1,25 @@
 package smartfarm.team.smartfarmapp.farm;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
-import android.widget.Spinner;
+import android.widget.ListView;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import smartfarm.team.smartfarmapp.R;
 
 public class WeightSliderActivity extends AppCompatActivity {
 
-    Spinner nodeId;
-    TextView nill, less, medium, moderate, excess, full;
-    ImageView slider;
+    ListView nodeList;
     SharedPreferences details;
 
     @Override
@@ -26,102 +27,12 @@ public class WeightSliderActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weight_slider);
 
-        nodeId = (Spinner) findViewById(R.id.node_id);
-        nill = (TextView) findViewById(R.id.nill);
-        less = (TextView) findViewById(R.id.less);
-        medium = (TextView) findViewById(R.id.medium);
-        moderate = (TextView) findViewById(R.id.moderate);
-        excess = (TextView) findViewById(R.id.excess);
-        full = (TextView) findViewById(R.id.full);
-        slider = (ImageView) findViewById(R.id.seekBar);
-
+        nodeList = (ListView) findViewById(R.id.weight_list);
         details = getSharedPreferences(getString(R.string.shared_main_name), MODE_PRIVATE);
         int numMotes = details.getInt("No of Motes", 16);
 
-        String[] motes = new String[numMotes];
-        for (int i = 1; i <= numMotes; i++) {
-            motes[i - 1] = "Mote " + i;
-        }
-
-
-        nodeId.setAdapter(new ArrayAdapter<String>(WeightSliderActivity.this,
-                android.R.layout.simple_dropdown_item_1line, motes));
-
-        nodeId.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                float moteSavedWeight = details.getFloat("Mote"+(position+1),1.0f);
-                switch (""+moteSavedWeight){
-                    case "0":
-                        slider.setImageResource(R.drawable.slider_nill);
-                        break;
-                    case "0.2":
-                        slider.setImageResource(R.drawable.slider_less);
-                        break;
-                    case "0.4":
-                        slider.setImageResource(R.drawable.slider_medium);
-                        break;
-                    case "0.6":
-                        slider.setImageResource(R.drawable.slider_moderate);
-                        break;
-                    case "0.8":
-                        slider.setImageResource(R.drawable.slider_excess);
-                        break;
-                    case "1":
-                        slider.setImageResource(R.drawable.slider_full);
-                        break;
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
-
-        nill.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                slider.setImageResource(R.drawable.slider_nill);
-                slider.setTag(0f);
-            }
-        });
-        less.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                slider.setImageResource(R.drawable.slider_less);
-                slider.setTag(0.2f);
-            }
-        });
-        medium.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                slider.setImageResource(R.drawable.slider_medium);
-                slider.setTag(0.4f);
-            }
-        });
-        moderate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                slider.setImageResource(R.drawable.slider_moderate);
-                slider.setTag(0.6f);
-            }
-        });
-        excess.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                slider.setImageResource(R.drawable.slider_excess);
-                slider.setTag(0.8f);
-            }
-        });
-        full.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                slider.setImageResource(R.drawable.slider_full);
-                slider.setTag(1.0f);
-            }
-        });
+        WeightAdapter adapter = new WeightAdapter(WeightSliderActivity.this,numMotes);
+        nodeList.setAdapter(adapter);
     }
 
     @Override
@@ -134,13 +45,81 @@ public class WeightSliderActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         super.onOptionsItemSelected(item);
-
-        int selectedMote = nodeId.getSelectedItemPosition();
-        SharedPreferences.Editor editor = details.edit();
-        editor.putFloat("Mote"+selectedMote, (Float) slider.getTag());
-        editor.apply();
-
+        onBackPressed();
         return true;
     }
 
+}
+
+class WeightAdapter extends ArrayAdapter<String>{
+
+    private Context context;
+    private int numMotes;
+    private SharedPreferences details;
+
+    private class ViewHolder {
+        TextView moteName;
+        SeekBar moteWeight;
+    }
+
+
+    public WeightAdapter(Context context, int numMotes) {
+        super(context, numMotes);
+        this.context = context;
+        this.numMotes = numMotes;
+        details = context.getSharedPreferences(context.getString(R.string.shared_main_name),Context.MODE_PRIVATE);
+    }
+
+    @NonNull
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        LayoutInflater inflater = (LayoutInflater) context
+                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+        ViewHolder holder;
+
+        if (convertView == null) {
+            convertView = inflater.inflate(R.layout.weight_list_card, parent, false);
+            holder = new ViewHolder();
+            holder.moteName = (TextView) convertView.findViewById(R.id.mote_name);
+            holder.moteWeight = (SeekBar) convertView.findViewById(R.id.mote_weight_seekbar);
+            convertView.setTag(holder);
+        } else {
+            holder = (ViewHolder) convertView.getTag();
+        }
+
+        holder.moteName.setText("Mote "+ (position+1));
+        holder.moteWeight.setTag(position);
+
+        float moteWeight = details.getFloat("Mote"+(position+1),1.0f);
+
+        holder.moteWeight.setProgress((int) (moteWeight*100));
+
+        holder.moteWeight.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                SharedPreferences.Editor editor =details.edit();
+                editor.putFloat("Mote"+((int) seekBar.getTag()+1),progress/100.0f);
+                editor.apply();
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
+
+        return convertView;
+    }
+
+    @Override
+    public int getCount() {
+        return numMotes;
+    }
 }
