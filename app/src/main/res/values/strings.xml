@@ -34,16 +34,18 @@
     <string name="signup_name">Name</string>
     <string name="signup_aadhar_no">Aadhar No</string>
     <string name="signup_contact_no">Contact No</string>
-    <string name="signup_location">Location</string>
+    <string name="signup_location">City</string>
     <string name="signup_done">Done</string>
 
-    <string name="shared_name">Shared Name</string>
     <string name="title_activity_notification">NotificationActivity</string>
     <string name="smart_farm">Smart Farm</string>
     <string name="main_crops">Crops</string>
     <string name="main_notification">Notification</string>
     <string name="main_suggestion">Suggestion</string>
+
+
     <string name="shared_previous_not">Previous Notification</string>
+
     <string name="draw_farm_instruction">Move the Cross to draw farm shape</string>
     <string name="done">Done</string>
     <string name="shared_farm_coordinates">Farm_Coordinates</string>
@@ -58,6 +60,7 @@
     <string name="set_up_done">Set Up Done</string>
     <string name="edit">Edit</string>
     <string name="choose_farm_shape">Choose Farm Shape</string>
+
     <string name="nill">Nill</string>
     <string name="less">Less</string>
     <string name="moderate">Moderate</string>
@@ -65,5 +68,12 @@
     <string name="excess">Excess</string>
     <string name="full">Full</string>
     <string name="title_activity_current_crop">CurrentCrop</string>
+
+    <string name="shared_current_crop">Current Crop</string>
+    <string name="shared_current_sown_date">Sown Date</string>
+    <string name="shared_current_total_days">Total Days</string>
+    <string name="shared_farm_soil_type">Farm Type</string>
+    <string name="signup_soil_type">Soil Type</string>
+    <string name="shared_current_crop_sown_bool">Crop Sown</string>
 
 </resources>

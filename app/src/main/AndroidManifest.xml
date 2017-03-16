@@ -78,18 +78,20 @@
         <activity android:name=".farm.SetUpFarmActivity" />
         <activity android:name=".farm.FarmTypeActivity" />
         <activity android:name=".farm.WeightSliderActivity" />
-        <!--
- ATTENTION: This was auto-generated to add Google Play services to your project for
-     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
-        -->
-        <meta-data
-            android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version" />
-
         <activity
             android:name=".farm.CurrentCrop"
             android:label="@string/title_activity_current_crop"
             android:parentActivityName=".HomePage.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="smartfarm.team.smartfarmapp.HomePage.MainActivity" />
+        </activity>
+
+        <activity
+            android:name=".signup.SoilActivity"
+            android:label="@string/title_activity_current_crop"
+            android:parentActivityName=".signup.SignUpActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

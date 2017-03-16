@@ -30,7 +30,8 @@ import smartfarm.team.smartfarmapp.util.ServerRequest;
 
 public class SignUpActivity extends AppCompatActivity {
 
-    TextView farm_id,name,aadhar,contact,location;
+    private static final int SOIL_TYPE_ACTIVITY = 520;
+    TextView farm_id,name,aadhar,contact,location,soilType;
     Button go;
     ProgressDialog load,barcode_load;
     SharedPreferences details;
@@ -45,11 +46,12 @@ public class SignUpActivity extends AppCompatActivity {
         aadhar = (TextView) findViewById(R.id.aadhar);
         contact = (TextView) findViewById(R.id.contact);
         location = (TextView) findViewById(R.id.location);
+        soilType = (TextView) findViewById(R.id.soil_type);
         go = (Button) findViewById(R.id.go);
 
         barcode_load = new ProgressDialog(SignUpActivity.this);
         barcode_load.setTitle("Setting It Up");
-        barcode_load.setCancelable(false);
+       // barcode_load.setCancelable(false);
         barcode_load.setMessage("Initializing Your App");
         barcode_load.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         barcode_load.show();
@@ -72,6 +74,14 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });
 
+        soilType.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SignUpActivity.this, SoilActivity.class);
+                startActivityForResult(intent,SOIL_TYPE_ACTIVITY);
+            }
+        });
+
     }
 
     void barcodeScan() {
@@ -84,7 +94,10 @@ public class SignUpActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (data != null) {
+        if(requestCode == SOIL_TYPE_ACTIVITY){
+            soilType.setText(details.getString(getString(R.string.shared_farm_soil_type),"Soil Type"));
+        }
+        else if (data != null) {
             String id = data.getStringExtra("SCAN_RESULT");
             Log.d("Farm Id", id);
 
@@ -140,6 +153,7 @@ public class SignUpActivity extends AppCompatActivity {
                 param.put("Aadhar", aadhar.getText().toString());
                 param.put("Contact", contact.getText().toString());
                 param.put("Location",location.getText().toString());
+                param.put("SoilType",soilType.getText().toString());
 
                 return param;
             }
