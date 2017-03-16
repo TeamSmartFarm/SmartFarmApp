@@ -64,5 +64,6 @@
     <string name="medium">Medium</string>
     <string name="excess">Excess</string>
     <string name="full">Full</string>
+    <string name="title_activity_current_crop">CurrentCrop</string>
 
 </resources>

@@ -28,6 +28,7 @@ public class FarmTypeActivity extends AppCompatActivity {
 
         cropShapeList.setAdapter(new FarmShapeAdapter(FarmTypeActivity.this,4));
 
+
     }
 }
 
