@@ -57,7 +57,7 @@ public class CropRecycleViewAdapter extends RecyclerView.Adapter<CropRecycleView
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.crop_list_row, parent, false);
+                .inflate(R.layout.crop_list_row_gj, parent, false);
         return new MyViewHolder(itemView);
     }
 

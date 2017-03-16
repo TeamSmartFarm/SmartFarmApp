@@ -4,21 +4,29 @@
     android:layout_height="match_parent">
 
     <TextView
+        android:layout_margin="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Select the New Crop"/>
+        android:text="Select the New Crop"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
 
     <Spinner
+        android:layout_margin="12dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="50dp"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Suggestions for you"/>
+        android:layout_margin="16dp"
+        android:text="Suggestions for you"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
 
     <android.support.v7.widget.RecyclerView
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         android:layout_width="match_parent"
+        android:layout_marginBottom="10dp"
         android:id="@+id/new_suggestion_list"
         android:layout_height="wrap_content"/>
 </LinearLayout>

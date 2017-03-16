@@ -58,8 +58,8 @@ class FarmShapeAdapter extends ArrayAdapter<String>{
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.crop_list_row_gj, parent, false);
             holder = new ViewHolder();
-            holder.shape = (ImageView) convertView.findViewById(R.id.shape_image);
-            holder.shapeTitle = (TextView) convertView.findViewById(R.id.shape_title);
+            holder.shape = (ImageView) convertView.findViewById(R.id.cropimage);
+            holder.shapeTitle = (TextView) convertView.findViewById(R.id.cropname);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();

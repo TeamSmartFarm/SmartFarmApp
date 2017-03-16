@@ -34,10 +34,10 @@ import smartfarm.team.smartfarmapp.gcm.NotificationActivity;
 
 public class CurrentCrop extends AppCompatActivity {
 
-    TextView sownDate, waterConsumed,cropProgressTextView;
+    TextView sownDate, waterConsumed,cropProgressTextView,totalMotes;
     ProgressBar cropProgress;
     Button done;
-    LinearLayout notificationLink;
+    LinearLayout notificationLink,moteWeightLink;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,62 +53,17 @@ public class CurrentCrop extends AppCompatActivity {
                 MODE_PRIVATE);
 
         if(!(currentCropShared.getBoolean(getString(R.string.shared_current_crop_sown_bool),false))){
-            AlertDialog.Builder builder = new AlertDialog.Builder(CurrentCrop.this);
-            LayoutInflater inflater = this.getLayoutInflater();
-            View dialogView = inflater.inflate(R.layout.sown_new_crop, null);
-            builder.setView(dialogView);
-            builder.setTitle("Select Crop");
-
-            LinearLayoutManager layoutManager
-                    = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-
-            RecyclerView suggestion = (RecyclerView) dialogView.findViewById(R.id.new_suggestion_list);
-            suggestion.setLayoutManager(layoutManager);
-
-            List<Crop> cropList =new ArrayList<>();
-            String imagepath = "http://192.168.0.116/ak/crop.png";
-            Crop crop = new Crop("Wheat", imagepath, "10", "12", "14");
-            cropList.add(crop);
-
-            crop = new Crop("Rice", imagepath, "10", "12", "14");
-            cropList.add(crop);
-
-            crop = new Crop("Chilly", imagepath, "10", "12", "14");
-            cropList.add(crop);
-
-            crop = new Crop("Peas", imagepath, "10", "12", "14");
-            cropList.add(crop);
-
-            crop = new Crop("Mustard", imagepath, "10", "12", "14");
-            cropList.add(crop);
-            CropRecycleViewAdapter recycleViewAdapter = new CropRecycleViewAdapter(cropList, new CropRecycleViewAdapter.OnCropClickListener() {
-                @Override
-                public void onCropClick(Crop crop) {
-                    //Toast.makeText(getApplicationContext(),crop.getCropName()+" clicked", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(CurrentCrop.this, CropDescriptionActivity.class);
-                    intent.putExtra("Crop", crop);
-                    startActivity(intent);
-                }
-            });
-            suggestion.setAdapter(recycleViewAdapter);
-
-            builder.setPositiveButton("Done", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    //Save Crop
-                }
-            });
-            builder.show();
+            takeNewCrop();
         }
 
         sownDate = (TextView) findViewById(R.id.current_sown_date);
         waterConsumed = (TextView) findViewById(R.id.current_last_not_water);
         cropProgressTextView = (TextView) findViewById(R.id.current_sown_progress_textview);
+        totalMotes = (TextView) findViewById(R.id.current_total_motes);
         notificationLink = (LinearLayout) findViewById(R.id.current_last_not);
+        moteWeightLink = (LinearLayout) findViewById(R.id.current_mote_weight);
         cropProgress = (ProgressBar) findViewById(R.id.current_sown_progress);
         done = (Button) findViewById(R.id.current_done);
-
-
 
         sownDate.setText(currentCropShared.getString(getString(R.string.shared_current_sown_date),
                 "13/03/2017"));
@@ -123,9 +78,20 @@ public class CurrentCrop extends AppCompatActivity {
         animator.start();
         cropProgressTextView.setText(progress + "% Grown");
 
-        SharedPreferences notification = getSharedPreferences(getString(R.string.shared_previous_not),
+        SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.shared_previous_not),
                 MODE_PRIVATE);
-        waterConsumed.setText(notification.getString(getString(R.string.gcm_water),"45450"));
+        waterConsumed.setText(sharedPreferences.getString(getString(R.string.gcm_water),"45450"));
+
+        sharedPreferences = getSharedPreferences(getString(R.string.shared_main_name),
+                MODE_PRIVATE);
+        totalMotes.setText(sharedPreferences.getInt(getString(R.string.shared_main_no_motes),15)+" Motes Installed");
+        moteWeightLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent weight = new Intent(CurrentCrop.this,WeightSliderActivity.class);
+                startActivity(weight);
+            }
+        });
 
         notificationLink.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -136,6 +102,55 @@ public class CurrentCrop extends AppCompatActivity {
         });
 
 
+    }
+
+    private void takeNewCrop() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(CurrentCrop.this);
+        LayoutInflater inflater = this.getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.sown_new_crop, null);
+        builder.setView(dialogView);
+        builder.setTitle("Select Crop");
+
+        LinearLayoutManager layoutManager
+                = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+
+        RecyclerView suggestion = (RecyclerView) dialogView.findViewById(R.id.new_suggestion_list);
+        suggestion.setLayoutManager(layoutManager);
+
+        List<Crop> cropList =new ArrayList<>();
+        String imagepath = "http://192.168.0.116/ak/crop.png";
+        Crop crop = new Crop("Wheat", imagepath, "10", "12", "14");
+        cropList.add(crop);
+
+        crop = new Crop("Rice", imagepath, "10", "12", "14");
+        cropList.add(crop);
+
+        crop = new Crop("Chilly", imagepath, "10", "12", "14");
+        cropList.add(crop);
+
+        crop = new Crop("Peas", imagepath, "10", "12", "14");
+        cropList.add(crop);
+
+        crop = new Crop("Mustard", imagepath, "10", "12", "14");
+        cropList.add(crop);
+        CropRecycleViewAdapter recycleViewAdapter = new CropRecycleViewAdapter(cropList, new CropRecycleViewAdapter.OnCropClickListener() {
+            @Override
+            public void onCropClick(Crop crop) {
+                //Toast.makeText(getApplicationContext(),crop.getCropName()+" clicked", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(CurrentCrop.this, CropDescriptionActivity.class);
+                intent.putExtra("Crop", crop);
+                startActivity(intent);
+            }
+        });
+        suggestion.setAdapter(recycleViewAdapter);
+
+        builder.setPositiveButton("Done", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                //Save Crop
+            }
+        });
+        builder.show();
     }
 
     private int calculateDateDiff(String startDateString) {

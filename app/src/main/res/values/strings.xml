@@ -75,5 +75,6 @@
     <string name="shared_farm_soil_type">Farm Type</string>
     <string name="signup_soil_type">Soil Type</string>
     <string name="shared_current_crop_sown_bool">Crop Sown</string>
+    <string name="shared_main_no_motes">No of Motes</string>
 
 </resources>
