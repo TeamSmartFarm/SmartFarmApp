@@ -87,7 +87,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="smartfarm.team.smartfarmapp.HomePage.MainActivity" />
         </activity>
-
         <activity
             android:name=".signup.SoilActivity"
             android:label="@string/title_activity_current_crop"
@@ -97,6 +96,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="smartfarm.team.smartfarmapp.HomePage.MainActivity" />
         </activity>
+        <activity
+            android:name=".farm.MyFarmActivity"
+            android:label="@string/title_activity_my_farm"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

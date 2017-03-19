@@ -4,6 +4,7 @@ package smartfarm.team.smartfarmapp.signup;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -17,8 +18,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-
-import com.squareup.picasso.Picasso;
 
 import smartfarm.team.smartfarmapp.R;
 
@@ -41,6 +40,9 @@ public class SoilActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         cropShapeList = (ListView) findViewById(R.id.soiltypelist);
+        int[] colors = {0, 0, 0};
+        cropShapeList.setDivider(new GradientDrawable(GradientDrawable.Orientation.RIGHT_LEFT, colors));
+        cropShapeList.setDividerHeight(15);
 
         cropShapeList.setAdapter(new FarmShapeAdapter(SoilActivity.this,6));
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -74,24 +76,41 @@ class FarmShapeAdapter extends ArrayAdapter<String>{
         ViewHolder holder;
 
         if (convertView == null) {
+
             convertView = inflater.inflate(R.layout.crop_list_row_soil_type, parent, false);
             holder = new ViewHolder();
             holder.shape = (ImageView) convertView.findViewById(R.id.cropimage);
             holder.shapeTitle = (TextView) convertView.findViewById(R.id.cropname);
             convertView.setTag(holder);
+
+            /*
+            convertView = inflater.inflate(R.layout.test, parent, false);
+            holder = new ViewHolder();
+            holder.shape = (ImageView) convertView.findViewById(R.id.background_image);
+            holder.shapeTitle = (TextView) convertView.findViewById(R.id.image_text);
+            convertView.setTag(holder);
+            */
+
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
 
 
-        Picasso.with(context)
-                .load(getShapeImageID(position))
-                .into(holder.shape);
-
+        holder.shape.setImageResource(getShapeImageID(position));
         String title = getShapeTitle(position);
         holder.shapeTitle.setText(title);
         holder.shape.setTag(title);
         holder.shapeTitle.setTag(title);
+
+        //Option 2
+        // holder.shapeTitle.setTextColor(Color.WHITE);
+
+
+        /* option 1
+        Bitmap bitmap = ((BitmapDrawable)holder.shape.getDrawable()).getBitmap();
+        Palette p = Palette.from(bitmap).generate();
+        holder.shapeTitle.setBackgroundColor(p.getDominantColor(Color.TRANSPARENT));
+        */
 
         holder.shape.setOnClickListener(saveCropName());
 

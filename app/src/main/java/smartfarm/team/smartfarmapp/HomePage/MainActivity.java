@@ -11,8 +11,9 @@ import android.widget.Button;
 import smartfarm.team.smartfarmapp.Crop.CropActivity;
 import smartfarm.team.smartfarmapp.R;
 import smartfarm.team.smartfarmapp.Suggestion.SuggestionActivity;
-import smartfarm.team.smartfarmapp.farm.CurrentCrop;
+import smartfarm.team.smartfarmapp.farm.MyFarmActivity;
 import smartfarm.team.smartfarmapp.gcm.RegistrationIntentService;
+import smartfarm.team.smartfarmapp.signup.SoilActivity;
 
 import static smartfarm.team.smartfarmapp.R.id.notification;
 
@@ -71,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void notificationClick() {
-        Intent intent=new Intent(MainActivity.this,CurrentCrop.class);
+        Intent intent=new Intent(MainActivity.this,MyFarmActivity.class);
         startActivity(intent);
     }
 }

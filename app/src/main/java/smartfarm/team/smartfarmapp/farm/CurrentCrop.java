@@ -4,16 +4,21 @@ import android.animation.ObjectAnimator;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.graphics.Palette;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -43,18 +48,32 @@ public class CurrentCrop extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_current_crop);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitleTextColor(Color.WHITE);
-        setSupportActionBar(toolbar);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        SharedPreferences currentCropShared = getSharedPreferences(getString(R.string.shared_current_crop),
+        SharedPreferences currentCropShared = getSharedPreferences(getString(R.string.shared_pref_name_current_crop),
                 MODE_PRIVATE);
 
         if(!(currentCropShared.getBoolean(getString(R.string.shared_current_crop_sown_bool),false))){
             takeNewCrop();
         }
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        CollapsingToolbarLayout collapsingToolbarLayout =
+                (CollapsingToolbarLayout) findViewById(R.id.collapsingToolbar);
+        ImageView toolbarImage = (ImageView) findViewById(R.id.toolbar_image);
+
+        collapsingToolbarLayout.setTitle(
+                currentCropShared.getString(getString(R.string.shared_current_crop),"Current Crop"));
+        //Set Image View Accordingly
+
+        Bitmap bitmap = ((BitmapDrawable)toolbarImage.getDrawable()).getBitmap();
+        Palette p = Palette.from(bitmap).generate();
+
+        collapsingToolbarLayout.setExpandedTitleColor(Color.WHITE);
+        collapsingToolbarLayout.setCollapsedTitleTextColor(Color.WHITE);
+        //collapsingToolbarLayout.setExpandedTitleTextColor(R.color.colorPrimary);
+
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         sownDate = (TextView) findViewById(R.id.current_sown_date);
         waterConsumed = (TextView) findViewById(R.id.current_last_not_water);
@@ -84,7 +103,7 @@ public class CurrentCrop extends AppCompatActivity {
 
         sharedPreferences = getSharedPreferences(getString(R.string.shared_main_name),
                 MODE_PRIVATE);
-        totalMotes.setText(sharedPreferences.getInt(getString(R.string.shared_main_no_motes),15)+" Motes Installed");
+        totalMotes.setText(sharedPreferences.getInt(getString(R.string.shared_farm_no_motes),15)+" Motes Installed");
         moteWeightLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

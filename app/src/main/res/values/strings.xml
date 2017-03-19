@@ -27,7 +27,14 @@
 
     <string name="shared_main_name">saved_details</string>
     <string name="shared_farm_id">Farm Id</string>
+    <string name="shared_farm_contact">Contact</string>
+    <string name="shared_farm_aadhar">Aadhar</string>
+    <string name="shared_farm_city">City</string>
+    <string name="shared_farm_name">Name</string>
+    <string name="shared_farm_soil_type">Farm Type</string>
+    <string name="shared_farm_no_motes">No of Motes</string>
     <string name="shared_first_time">First_Time</string>
+
 
     <string name="farm_id">Farm ID</string>
     <string name="signup_details">Details</string>
@@ -69,12 +76,23 @@
     <string name="full">Full</string>
     <string name="title_activity_current_crop">CurrentCrop</string>
 
+    <string name="shared_pref_name_current_crop">Current Crop</string>
     <string name="shared_current_crop">Current Crop</string>
     <string name="shared_current_sown_date">Sown Date</string>
     <string name="shared_current_total_days">Total Days</string>
-    <string name="shared_farm_soil_type">Farm Type</string>
-    <string name="signup_soil_type">Soil Type</string>
     <string name="shared_current_crop_sown_bool">Crop Sown</string>
-    <string name="shared_main_no_motes">No of Motes</string>
+
+    <string name="title_activity_my_farm">MyFarmActivity</string>
+    <string name="my_farm_name">Name</string>
+    <string name="my_farm_contact">Contact</string>
+    <string name="my_farm_aadhar_no">Aadhar No</string>
+    <string name="my_farm_area">Area</string>
+    <string name="my_farm_no_of_motes">No of Motes</string>
+    <string name="my_farm_mote_weight">Mote Weight</string>
+    <string name="my_farm_soil_type">Soil Type</string>
+    <string name="my_farm_current_crop">Current Crop</string>
+    <string name="signup_no_of_motes">No of Motes</string>
+    <string name="signup_soil_type">Soil Type</string>
+
 
 </resources>

@@ -47,8 +47,7 @@
         android:id="@+id/soiltypelist"
         android:layout_width="match_parent"
         tools:listitem="@layout/crop_list_row_soil_type"
-        android:layout_height="match_parent"
-        />
+        android:layout_height="match_parent"/>
 
 
 </android.support.design.widget.CoordinatorLayout>
