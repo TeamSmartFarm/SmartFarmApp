@@ -16,7 +16,6 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-
         android:layout_height="match_parent"
         android:orientation="vertical">
 
@@ -28,6 +27,7 @@
             android:layout_marginBottom="16dp">
 
             <LinearLayout
+                android:padding="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
@@ -40,7 +40,7 @@
                         android:id="@+id/my_farm_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:selectAllOnFocus="false"
+                        android:focusableInTouchMode="false"
                         android:hint="@string/my_farm_name" />
                 </android.support.design.widget.TextInputLayout>
 
@@ -52,7 +52,8 @@
                         android:id="@+id/my_farm_contact"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:selectAllOnFocus="false"
+                        android:focusableInTouchMode="false"
+                        android:inputType="numberDecimal"
                         android:hint="@string/my_farm_contact" />
                 </android.support.design.widget.TextInputLayout>
 
@@ -64,7 +65,7 @@
                         android:id="@+id/my_farm_aadhar"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:selectAllOnFocus="false"
+                        android:focusableInTouchMode="false"
                         android:hint="@string/my_farm_aadhar_no" />
                 </android.support.design.widget.TextInputLayout>
 
@@ -76,7 +77,7 @@
                         android:id="@+id/my_farm_area"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:selectAllOnFocus="false"
+                        android:focusableInTouchMode="false"
                         android:hint="@string/my_farm_area" />
                 </android.support.design.widget.TextInputLayout>
 
@@ -88,7 +89,8 @@
                         android:id="@+id/my_farm_no_motes"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:selectAllOnFocus="false"
+                        android:focusableInTouchMode="false"
+                        android:inputType="numberDecimal"
                         android:hint="@string/my_farm_no_of_motes" />
                 </android.support.design.widget.TextInputLayout>
 
@@ -140,8 +142,7 @@
                         android:id="@+id/my_farm_soil_image"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/crop" />
+                        android:scaleType="fitXY"/>
 
                     <TextView
                         android:id="@+id/my_farm_soil_text"
@@ -186,8 +187,7 @@
                         android:id="@+id/my_farm_crop_image"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/crop" />
+                        android:scaleType="fitXY"/>
 
                     <TextView
                         android:id="@+id/my_farm_crop_text"

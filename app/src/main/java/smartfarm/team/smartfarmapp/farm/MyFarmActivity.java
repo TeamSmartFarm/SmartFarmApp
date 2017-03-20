@@ -12,16 +12,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
 import smartfarm.team.smartfarmapp.R;
+import smartfarm.team.smartfarmapp.signup.SoilActivity;
 import smartfarm.team.smartfarmapp.util.Constant;
 
 public class MyFarmActivity extends AppCompatActivity {
@@ -31,6 +35,8 @@ public class MyFarmActivity extends AppCompatActivity {
     TextView currentCropText,soilText;
     ImageView currentCropImage,soilImage;
     CardView motesWeight;
+    Boolean editMode = false;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +48,7 @@ public class MyFarmActivity extends AppCompatActivity {
 
         CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.ctl);
         collapsingToolbarLayout.setTitle("Farm ID: " + details.getString(getString(R.string.shared_farm_id),"001"));
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         initWidget();
@@ -56,7 +62,8 @@ public class MyFarmActivity extends AppCompatActivity {
     private void initSoilType() {
         String soilName = details.getString(getString(R.string.shared_farm_soil_type),"Null");
         soilText.setText(soilName);
-        soilImage.setBackgroundResource(getSoilImageID(soilName));
+        int id = getSoilImageID(soilName);
+        soilImage.setImageResource(id);
 
         Bitmap bitmap = ((BitmapDrawable)soilImage.getDrawable()).getBitmap();
         Palette p = Palette.from(bitmap).generate();
@@ -67,27 +74,32 @@ public class MyFarmActivity extends AppCompatActivity {
 
         String curentCrop = currentCrop.getString(getString(R.string.shared_current_crop),"Null");
 
-        Target target = new Target() {
+        final Target target = new Target() {
             @Override
             public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
                 currentCropImage.setImageBitmap(bitmap);
 
-                Bitmap imgBitmap = ((BitmapDrawable)soilImage.getDrawable()).getBitmap();
-                Palette p = Palette.from(imgBitmap).generate();
+                //Bitmap imgBitmap = ((BitmapDrawable)currentCropImage.getDrawable()).getBitmap();
+                Palette p = Palette.from(bitmap).generate();
                 currentCropText.setBackgroundColor(p.getDominantColor(Color.TRANSPARENT));
+
             }
 
             @Override
-            public void onBitmapFailed(Drawable errorDrawable) {}
+            public void onBitmapFailed(Drawable errorDrawable) {
+            }
 
             @Override
-            public void onPrepareLoad(Drawable placeHolderDrawable) {}
+            public void onPrepareLoad(Drawable placeHolderDrawable) {
+            }
         };
 
+        currentCropImage.setTag(target);
         Picasso.with(MyFarmActivity.this)
                 .load(R.drawable.crop)
-                //.load(Constant.url+"/cropimg/"+curentCrop)
                 .into(target);
+
+        //.load(Constant.url+"/cropimg/"+curentCrop)
 
     }
 
@@ -125,11 +137,6 @@ public class MyFarmActivity extends AppCompatActivity {
         motesWeight = (CardView) findViewById(R.id.my_farm_mote);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        return super.onCreateOptionsMenu(menu);
-    }
-
     private int getSoilImageID(String type) {
         switch (type){
             case "Alluvium Soil":
@@ -145,5 +152,56 @@ public class MyFarmActivity extends AppCompatActivity {
             default:
                 return R.drawable.desert_soil;
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        if (!editMode)
+            getMenuInflater().inflate(R.menu.setup_farm_menu_edit, menu);
+        else
+            getMenuInflater().inflate(R.menu.setup_farm_menu_done, menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        super.onOptionsItemSelected(item);
+
+        if(editMode) {
+            SharedPreferences.Editor editor = details.edit();
+            editor.putString(getString(R.string.shared_farm_contact),contact.getText().toString());
+            editor.putString(getString(R.string.shared_farm_aadhar),aadhar.getText().toString());
+            editor.putString(getString(R.string.shared_farm_city),city.getText().toString());
+            editor.putString(getString(R.string.shared_farm_name),name.getText().toString());
+            editor.putString(getString(R.string.shared_farm_no_motes),numMotes.getText().toString());
+            editor.apply();
+            editMode=false;
+           // soilImage.setOnClickListener(null);
+            invalidateOptionsMenu();
+            toolbar = (Toolbar) findViewById(R.id.toolbar);
+        }
+        else{
+            editMode = true;
+            name.setFocusableInTouchMode(true);
+            aadhar.setFocusableInTouchMode(true);
+            city.setFocusableInTouchMode(true);
+            contact.setFocusableInTouchMode(true);
+            numMotes.setFocusableInTouchMode(true);
+
+            soilImage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent soil = new Intent(MyFarmActivity.this, SoilActivity.class);
+                    startActivity(soil);
+                }
+            });
+            invalidateOptionsMenu();
+            toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        }
+
+        return true;
     }
 }

@@ -29,7 +29,7 @@ public class WeightSliderActivity extends AppCompatActivity {
 
         nodeList = (ListView) findViewById(R.id.weight_list);
         details = getSharedPreferences(getString(R.string.shared_main_name), MODE_PRIVATE);
-        int numMotes = details.getInt(getString(R.string.shared_farm_no_motes), 16);
+        int numMotes = Integer.parseInt(details.getString(getString(R.string.shared_farm_no_motes), "16"));
 
         WeightAdapter adapter = new WeightAdapter(WeightSliderActivity.this,numMotes);
         nodeList.setAdapter(adapter);
