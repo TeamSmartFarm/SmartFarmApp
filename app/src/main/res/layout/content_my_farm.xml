@@ -74,11 +74,11 @@
                     android:layout_height="wrap_content">
 
                     <EditText
-                        android:id="@+id/my_farm_area"
+                        android:id="@+id/my_farm_city"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:focusableInTouchMode="false"
-                        android:hint="@string/my_farm_area" />
+                        android:hint="@string/my_farm_city" />
                 </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout
@@ -92,6 +92,18 @@
                         android:focusableInTouchMode="false"
                         android:inputType="numberDecimal"
                         android:hint="@string/my_farm_no_of_motes" />
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/my_farm_area"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:focusableInTouchMode="false"
+                        android:hint="@string/my_farm_area" />
                 </android.support.design.widget.TextInputLayout>
 
             </LinearLayout>

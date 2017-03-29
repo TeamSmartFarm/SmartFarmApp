@@ -66,9 +66,6 @@ class FarmShapeAdapter extends ArrayAdapter<String>{
         }
 
 
-        Picasso.with(context)
-                .load(getShapeImageID(position))
-                .into(holder.shape);
 
         holder.shapeTitle.setText(getShapeTitle(position));
         holder.shape.setTag(position);
@@ -77,20 +74,7 @@ class FarmShapeAdapter extends ArrayAdapter<String>{
         return convertView;
     }
 
-    private int getShapeImageID(int position) {
-        switch (position){
-            case 0:
-                return R.drawable.circular_farm;
-            case 1:
-                return R.drawable.rectangle_farm;
-            case 2:
-                return R.drawable.circular_farm;
-            case 3:
-                return R.drawable.circular_farm;
-            default:
-                return R.drawable.circular_farm;
-        }
-    }
+
 
     private String getShapeTitle(int position) {
         switch (position){

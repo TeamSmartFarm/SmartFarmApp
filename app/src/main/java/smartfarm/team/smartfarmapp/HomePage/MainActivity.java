@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 import smartfarm.team.smartfarmapp.Crop.CropActivity;
 import smartfarm.team.smartfarmapp.R;
@@ -16,12 +17,11 @@ import smartfarm.team.smartfarmapp.farm.MyFarmActivity;
 import smartfarm.team.smartfarmapp.gcm.NotificationActivity;
 import smartfarm.team.smartfarmapp.gcm.RegistrationIntentService;
 import smartfarm.team.smartfarmapp.signup.SoilActivity;
-
 import static smartfarm.team.smartfarmapp.R.id.notification;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button cropButton,notificationButton,suggestionButton,myFarmButton,currentCropButton;
+    private LinearLayout cropButton,notificationButton,suggestionButton,myFarmButton,currentCropButton;
     static public Activity thisAct;
 
     @Override
@@ -30,11 +30,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         thisAct = MainActivity.this;
 
-        cropButton = (Button) findViewById(R.id.crops);
-        suggestionButton = (Button) findViewById(R.id.suggestions);
-        notificationButton = (Button) findViewById(notification);
-        myFarmButton = (Button) findViewById(R.id.farm);
-        currentCropButton = (Button) findViewById(R.id.current);
+        cropButton = (LinearLayout) findViewById(R.id.crops);
+        suggestionButton = (LinearLayout) findViewById(R.id.suggestions);
+        notificationButton = (LinearLayout) findViewById(notification);
+        myFarmButton = (LinearLayout) findViewById(R.id.farm);
+        currentCropButton = (LinearLayout) findViewById(R.id.current);
 
         cropButton.setOnClickListener(new View.OnClickListener() {
             @Override

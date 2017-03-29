@@ -31,7 +31,7 @@
     <string name="shared_farm_aadhar">Aadhar</string>
     <string name="shared_farm_city">City</string>
     <string name="shared_farm_name">Name</string>
-    <string name="shared_farm_soil_type">Farm Type</string>
+    <string name="shared_farm_soil_type">Soil Type</string>
     <string name="shared_farm_no_motes">No of Motes</string>
     <string name="shared_first_time">First_Time</string>
 
@@ -86,13 +86,16 @@
     <string name="my_farm_name">Name</string>
     <string name="my_farm_contact">Contact</string>
     <string name="my_farm_aadhar_no">Aadhar No</string>
-    <string name="my_farm_area">Area</string>
+    <string name="my_farm_area">Farm Area</string>
     <string name="my_farm_no_of_motes">No of Motes</string>
     <string name="my_farm_mote_weight">Mote Weight</string>
     <string name="my_farm_soil_type">Soil Type</string>
     <string name="my_farm_current_crop">Current Crop</string>
     <string name="signup_no_of_motes">No of Motes</string>
     <string name="signup_soil_type">Soil Type</string>
+    <string name="signup_farm_area">Farm Area</string>
+    <string name="shared_farm_area">Area</string>
+    <string name="my_farm_city">City</string>
 
 
 </resources>

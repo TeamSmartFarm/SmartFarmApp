@@ -6,8 +6,6 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.net.wifi.WifiConfiguration;
-import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -16,31 +14,34 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
-import java.io.IOException;
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
-import java.net.InetAddress;
-import java.net.SocketException;
-import java.net.UnknownHostException;
+import java.util.HashMap;
+import java.util.Map;
 
 import smartfarm.team.smartfarmapp.R;
 import smartfarm.team.smartfarmapp.signup.SoilActivity;
+import smartfarm.team.smartfarmapp.util.Constant;
+import smartfarm.team.smartfarmapp.util.ServerRequest;
 
 public class MyFarmActivity extends AppCompatActivity {
 
     SharedPreferences details, currentCrop;
-    EditText name, aadhar, contact, city, numMotes;
+    EditText name, aadhar, contact, city, numMotes,farmArea;
     TextView currentCropText, soilText;
     ImageView currentCropImage, soilImage;
     CardView motesWeight;
@@ -70,45 +71,13 @@ public class MyFarmActivity extends AppCompatActivity {
         initDetails();
         initCurrentCrop();
         initSoilType();
-        sendMoteWeight();
-
     }
 
-    private void sendMoteWeight() {
-        Log.e("WEIGHT","........");
-
-        try {
-            int numMotes = Integer.parseInt(details.getString(getString(R.string.shared_farm_no_motes), "10"));
-            WifiConfiguration wifiConfig = new WifiConfiguration();
-            wifiConfig.SSID = String.format("\"%s\"", "SmartFarm1332908");
-            wifiConfig.preSharedKey = String.format("\"%s\"", "A3B4NJshb*903dfnHx");
-            //wifiConfig.allowedKeyManagement.set(WifiConfiguration.KeyMgmt.NONE);
-
-            WifiManager wifiManager = (WifiManager) getSystemService(WIFI_SERVICE);
-            int netId = wifiManager.addNetwork(wifiConfig);
-            wifiManager.disconnect();
-            wifiManager.enableNetwork(netId, true);
-            wifiManager.reconnect();
-
-            Log.e("Localhost", String.valueOf(InetAddress.getLocalHost()));
-            DatagramPacket packet = new DatagramPacket("Hello".getBytes(),
-                    "Hello".length(), InetAddress.getByAddress("192.168.0.1".getBytes()), 9999);
-
-            DatagramSocket socket = new DatagramSocket(5050);
-            socket.send(packet);
-
-        } catch (UnknownHostException e) {
-            e.printStackTrace();
-            Log.e("Error...1",e.getMessage());
-        } catch (SocketException e) {
-            e.printStackTrace();
-            Log.e("Error....2",e.getMessage());
-        } catch (IOException e) {
-            e.printStackTrace();
-            Log.e("Error....3",e.getMessage());
-        }
-
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        soilImage.invalidate();
+        soilText.invalidate();
     }
 
     private void initSoilType() {
@@ -148,8 +117,9 @@ public class MyFarmActivity extends AppCompatActivity {
 
         currentCropImage.setTag(target);
         Picasso.with(MyFarmActivity.this)
-                .load(R.drawable.crop)
+                .load(Constant.url+"/sf/cropimage/"+curentCrop+".jpg")
                 .into(target);
+        currentCropText.setText(curentCrop);
 
         //.load(Constant.url+"/cropimg/"+curentCrop)
 
@@ -161,6 +131,7 @@ public class MyFarmActivity extends AppCompatActivity {
         city.setText(details.getString(getString(R.string.shared_farm_city), "City"));
         aadhar.setText(details.getString(getString(R.string.shared_farm_aadhar), "Aadhar"));
         numMotes.setText(details.getString(getString(R.string.shared_farm_no_motes), "Motes"));
+        farmArea.setText(details.getString(getString(R.string.shared_farm_area), "Farm Area"));
     }
 
     private View.OnClickListener weightIntent() {
@@ -177,8 +148,9 @@ public class MyFarmActivity extends AppCompatActivity {
         name = (EditText) findViewById(R.id.my_farm_name);
         contact = (EditText) findViewById(R.id.my_farm_contact);
         aadhar = (EditText) findViewById(R.id.my_farm_aadhar);
-        city = (EditText) findViewById(R.id.my_farm_area);
+        city = (EditText) findViewById(R.id.my_farm_city);
         numMotes = (EditText) findViewById(R.id.my_farm_no_motes);
+        farmArea = (EditText) findViewById(R.id.my_farm_area);
 
         currentCropText = (TextView) findViewById(R.id.my_farm_crop_text);
         soilText = (TextView) findViewById(R.id.my_farm_soil_text);
@@ -228,8 +200,12 @@ public class MyFarmActivity extends AppCompatActivity {
             editor.putString(getString(R.string.shared_farm_city), city.getText().toString());
             editor.putString(getString(R.string.shared_farm_name), name.getText().toString());
             editor.putString(getString(R.string.shared_farm_no_motes), numMotes.getText().toString());
+            editor.putString(getString(R.string.shared_farm_area), farmArea.getText().toString());
+
             editor.apply();
             editMode = false;
+
+            saveDetails();
             // soilImage.setOnClickListener(null);
             invalidateOptionsMenu();
             toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -240,6 +216,7 @@ public class MyFarmActivity extends AppCompatActivity {
             city.setFocusableInTouchMode(true);
             contact.setFocusableInTouchMode(true);
             numMotes.setFocusableInTouchMode(true);
+            farmArea.setFocusableInTouchMode(true);
 
             soilImage.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -254,5 +231,44 @@ public class MyFarmActivity extends AppCompatActivity {
         }
 
         return true;
+    }
+
+    private void saveDetails() {
+        String url = Constant.url + "/sf/signup";
+
+        StringRequest newac = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String result) {
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getApplicationContext(),
+                                "Some Error Occurred....Try Latter", Toast.LENGTH_LONG).show();
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+
+                Map<String, String> param = new HashMap<>();
+
+                param.put("FarmID", details.getString(getString(R.string.shared_farm_id), "001"));
+                param.put("Name", name.getText().toString());
+                param.put("Aadhar", aadhar.getText().toString());
+                param.put("Contact", contact.getText().toString());
+                param.put("Location", city.getText().toString());
+                param.put("NumberMotes", numMotes.getText().toString());
+                param.put("Area", farmArea.getText().toString());
+                param.put("SoilType", details.getString(getString(R.string.shared_farm_soil_type),"Black Soil"));
+
+                return param;
+            }
+        };
+
+        ServerRequest.getInstance(getApplicationContext()).getRequestQueue().add(newac);
+
     }
 }

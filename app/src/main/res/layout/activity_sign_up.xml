@@ -71,6 +71,7 @@
                     android:id="@+id/contact"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:inputType="numberDecimal"
                     android:hint="@string/signup_contact_no" />
             </android.support.design.widget.TextInputLayout>
 
@@ -92,6 +93,7 @@
                 <EditText
                     android:id="@+id/num_motes"
                     android:layout_width="match_parent"
+                    android:inputType="numberDecimal"
                     android:layout_height="wrap_content"
                     android:hint="@string/signup_no_of_motes" />
             </android.support.design.widget.TextInputLayout>
@@ -107,6 +109,18 @@
                     android:inputType="none"
                     android:focusableInTouchMode="false"
                     android:hint="@string/signup_soil_type" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/area"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none"
+                    android:hint="@string/signup_farm_area" />
             </android.support.design.widget.TextInputLayout>
         </LinearLayout>
 

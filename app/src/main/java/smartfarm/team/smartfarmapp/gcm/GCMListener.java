@@ -14,6 +14,8 @@ import android.util.Log;
 
 import com.google.android.gms.gcm.GcmListenerService;
 
+import org.json.JSONObject;
+
 import smartfarm.team.smartfarmapp.R;
 
 public class GCMListener extends GcmListenerService {
@@ -38,11 +40,31 @@ public class GCMListener extends GcmListenerService {
         if (!data.isEmpty()) {
             try {
 
-                //JSONObject jsonObject = new JSONObject(data.getString("msg"));
-                handleReceivedRequest(data);
+                if(data.containsKey("message"))
+                    sendStatusNotification(data);
+                else
+                    handleReceivedRequest(data);
             } catch (Exception e) {
             }
         }
+    }
+
+    private void sendStatusNotification(Bundle data) {
+        NotificationManager mNotificationManager =
+                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+        String message = data.getString("message");
+        Bitmap largeIcon = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this)
+                .setSmallIcon(R.mipmap.ic_launcher)
+                .setLargeIcon(largeIcon)
+                .setContentTitle("Message")
+                .setStyle(new NotificationCompat.BigTextStyle()
+                        .bigText(message))
+                .setContentText(message)
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setAutoCancel(true)
+                .setNumber(++NOTIFICATION_NUM);
     }
 
     private void handleReceivedRequest(Bundle message) {

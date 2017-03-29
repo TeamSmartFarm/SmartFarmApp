@@ -17,9 +17,6 @@ import com.squareup.picasso.Target;
 import java.util.List;
 
 import smartfarm.team.smartfarmapp.R;
-import smartfarm.team.smartfarmapp.farm.MyFarmActivity;
-
-import static smartfarm.team.smartfarmapp.R.drawable.crop;
 
 /**
  * Created by AK on 02-Jan-17.

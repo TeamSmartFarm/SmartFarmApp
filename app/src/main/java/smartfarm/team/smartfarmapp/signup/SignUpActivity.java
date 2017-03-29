@@ -29,6 +29,7 @@ import java.util.Map;
 import smartfarm.team.smartfarmapp.Crop.Crop;
 import smartfarm.team.smartfarmapp.HomePage.MainActivity;
 import smartfarm.team.smartfarmapp.R;
+import smartfarm.team.smartfarmapp.farm.MyFarmActivity;
 import smartfarm.team.smartfarmapp.gcm.RegistrationIntentService;
 import smartfarm.team.smartfarmapp.util.Constant;
 import smartfarm.team.smartfarmapp.util.ServerRequest;
@@ -37,7 +38,7 @@ import smartfarm.team.smartfarmapp.util.ServerRequest;
 public class SignUpActivity extends AppCompatActivity {
 
     private static final int SOIL_TYPE_ACTIVITY = 520;
-    TextView farm_id, name, aadhar, contact, location, soilType,numMotes;
+    TextView farm_id, name, aadhar, contact, location, soilType,numMotes,farmArea;
     Button go;
     ProgressDialog load, barcode_load;
     SharedPreferences details;
@@ -54,6 +55,7 @@ public class SignUpActivity extends AppCompatActivity {
         location = (TextView) findViewById(R.id.location);
         soilType = (TextView) findViewById(R.id.soil_type);
         numMotes = (TextView) findViewById(R.id.num_motes);
+        farmArea = (TextView) findViewById(R.id.area);
         go = (Button) findViewById(R.id.go);
 
         barcode_load = new ProgressDialog(SignUpActivity.this);
@@ -134,6 +136,7 @@ public class SignUpActivity extends AppCompatActivity {
                     editor.putString(getString(R.string.shared_farm_name), obj.getString("name"));
                     editor.putString(getString(R.string.shared_farm_no_motes), obj.getString("number_motes"));
                     editor.putString(getString(R.string.shared_farm_soil_type), obj.getString("soil_type"));
+                    editor.putString(getString(R.string.shared_farm_area),obj.getString("area"));
                     editor.apply();
 
                     Intent intent=new Intent(SignUpActivity.this,MainActivity.class);
@@ -185,6 +188,8 @@ public class SignUpActivity extends AppCompatActivity {
                         editor.putString(getString(R.string.shared_farm_city),location.getText().toString());
                         editor.putString(getString(R.string.shared_farm_name),name.getText().toString());
                         editor.putString(getString(R.string.shared_farm_no_motes),numMotes.getText().toString());
+                        editor.putString(getString(R.string.shared_farm_area),numMotes.getText().toString());
+
                         editor.apply();
 
                         //going to Main Screen
@@ -211,6 +216,7 @@ public class SignUpActivity extends AppCompatActivity {
                 param.put("Contact", contact.getText().toString());
                 param.put("Location", location.getText().toString());
                 param.put("NumberMotes", numMotes.getText().toString());
+                param.put("Area", farmArea.getText().toString());
                 param.put("SoilType", soilType.getText().toString());
 
                 return param;

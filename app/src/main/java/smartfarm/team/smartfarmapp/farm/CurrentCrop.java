@@ -18,6 +18,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -65,17 +66,22 @@ public class CurrentCrop extends AppCompatActivity {
     Button done;
     String selectedCrop;
     LinearLayout notificationLink,moteWeightLink;
-    SharedPreferences currentCropShared,notificationSharedPreferences;
+    SharedPreferences currentCropShared,notificationSharedPreferences,detailSharedPreferences;
+    ViewGroup mainLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_current_crop);
+        mainLayout = (ViewGroup) findViewById(R.id.mainLayout);
 
         currentCropShared = getSharedPreferences(getString(R.string.shared_pref_name_current_crop),
                 MODE_PRIVATE);
 
         notificationSharedPreferences = getSharedPreferences(getString(R.string.shared_previous_not),
+                MODE_PRIVATE);
+
+        detailSharedPreferences = getSharedPreferences(getString(R.string.shared_main_name),
                 MODE_PRIVATE);
 
         if(!(currentCropShared.getBoolean(getString(R.string.shared_current_crop_sown_bool),false))){
@@ -88,7 +94,7 @@ public class CurrentCrop extends AppCompatActivity {
         done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                submitCrop();
+                takeNewCrop();
             }
         });
         moteWeightLink.setOnClickListener(new View.OnClickListener() {
@@ -129,11 +135,13 @@ public class CurrentCrop extends AppCompatActivity {
                     String dateString=datefm.format(date);
                     Log.e("Date",dateString);
                     SharedPreferences.Editor editor= currentCropShared.edit();
-                    editor.putString(getString(R.string.shared_current_crop_sown_bool),"true");
-                    editor.putString(getString(R.string.shared_current_total_days),response.getString("days"));
+                    editor.putBoolean(getString(R.string.shared_current_crop_sown_bool),true);
+                    editor.putInt(getString(R.string.shared_current_total_days),Integer.parseInt(response.getString("days")));
                     editor.putString(getString(R.string.shared_current_crop),selectedCrop);
                     editor.putString(getString(R.string.shared_current_sown_date),dateString);
                     editor.apply();
+
+                    mainLayout.invalidate();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -170,9 +178,9 @@ public class CurrentCrop extends AppCompatActivity {
         animator.start();
         cropProgressTextView.setText(progress + "% Grown");
 
-        waterConsumed.setText(notificationSharedPreferences.getString(getString(R.string.gcm_water),"45450"));
+        waterConsumed.setText(notificationSharedPreferences.getString(getString(R.string.gcm_water),"4560"));
 
-        totalMotes.setText(notificationSharedPreferences.getString(getString(R.string.shared_farm_no_motes),"15")+" Motes Installed");
+        totalMotes.setText(detailSharedPreferences.getString(getString(R.string.shared_farm_no_motes),"15")+" Motes Installed");
     }
 
     private void initWidget() {
@@ -216,7 +224,7 @@ public class CurrentCrop extends AppCompatActivity {
         toolbarImage.setTag(target);
         //Set Image View Accordingly
         Picasso.with(CurrentCrop.this)
-                .load(Constant.url+"sf/cropimage/"+cropTitle+".jpg")
+                .load(Constant.url+"/sf/cropimage/"+cropTitle+".jpg")
                 .into(toolbarImage);
 
         collapsingToolbarLayout.setExpandedTitleColor(Color.WHITE);
@@ -232,6 +240,7 @@ public class CurrentCrop extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(CurrentCrop.this);
         LayoutInflater inflater = this.getLayoutInflater();
         View dialogView = inflater.inflate(R.layout.sown_new_crop, null);
+
         builder.setView(dialogView);
         builder.setTitle("Select Crop");
 
@@ -302,7 +311,7 @@ public class CurrentCrop extends AppCompatActivity {
         builder.setPositiveButton("Done", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                //Save Crop
+                submitCrop();
             }
         });
         builder.show();

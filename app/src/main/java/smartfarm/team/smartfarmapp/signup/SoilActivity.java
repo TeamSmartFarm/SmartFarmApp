@@ -4,12 +4,16 @@ package smartfarm.team.smartfarmapp.signup;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.graphics.Palette;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -77,19 +81,20 @@ class FarmShapeAdapter extends ArrayAdapter<String>{
 
         if (convertView == null) {
 
+            /*
             convertView = inflater.inflate(R.layout.crop_list_row_soil_type, parent, false);
             holder = new ViewHolder();
             holder.shape = (ImageView) convertView.findViewById(R.id.cropimage);
             holder.shapeTitle = (TextView) convertView.findViewById(R.id.cropname);
             convertView.setTag(holder);
 
-            /*
+            */
             convertView = inflater.inflate(R.layout.test, parent, false);
             holder = new ViewHolder();
             holder.shape = (ImageView) convertView.findViewById(R.id.background_image);
             holder.shapeTitle = (TextView) convertView.findViewById(R.id.image_text);
             convertView.setTag(holder);
-            */
+
 
         } else {
             holder = (ViewHolder) convertView.getTag();
@@ -106,11 +111,10 @@ class FarmShapeAdapter extends ArrayAdapter<String>{
         // holder.shapeTitle.setTextColor(Color.WHITE);
 
 
-        /* option 1
         Bitmap bitmap = ((BitmapDrawable)holder.shape.getDrawable()).getBitmap();
         Palette p = Palette.from(bitmap).generate();
         holder.shapeTitle.setBackgroundColor(p.getDominantColor(Color.TRANSPARENT));
-        */
+
 
         holder.shape.setOnClickListener(saveCropName());
 

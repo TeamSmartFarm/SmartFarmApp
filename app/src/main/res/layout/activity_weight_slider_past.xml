@@ -97,12 +97,7 @@
 
         </LinearLayout>
 
-        <ImageView
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:src="@drawable/slider_less"
-            android:id="@+id/seekBar"/>
+
 
     </LinearLayout>
 
