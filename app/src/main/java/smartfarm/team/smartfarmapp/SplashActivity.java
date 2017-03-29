@@ -23,12 +23,10 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-
         if (ContextCompat.checkSelfPermission(SplashActivity.this, android.Manifest.permission.CAMERA)
                 != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(SplashActivity.this,
                     new String[]{android.Manifest.permission.CAMERA}, 5959);
-
         }
 
         new Thread(new Runnable() {
@@ -36,14 +34,15 @@ public class SplashActivity extends AppCompatActivity {
             public void run() {
                 try {
                     sleep(2000);
-
                     details = getSharedPreferences(getString(R.string.shared_main_name)
                             , MODE_PRIVATE);
 
                     Intent intent;
                     if (details.getBoolean(getString(R.string.shared_first_time), true)) {
+
                         intent = new Intent(SplashActivity.this, SignUpActivity.class);
-                    } else {
+                    }
+                    else {
                         intent = new Intent(SplashActivity.this, MainActivity.class);
                     }
                     startActivity(intent);

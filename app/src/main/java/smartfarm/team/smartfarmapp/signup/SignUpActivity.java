@@ -10,17 +10,23 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.google.zxing.integration.android.IntentIntegrator;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import smartfarm.team.smartfarmapp.Crop.Crop;
 import smartfarm.team.smartfarmapp.HomePage.MainActivity;
 import smartfarm.team.smartfarmapp.R;
 import smartfarm.team.smartfarmapp.gcm.RegistrationIntentService;
@@ -105,13 +111,55 @@ public class SignUpActivity extends AppCompatActivity {
             editor.putString(getString(R.string.shared_farm_id), id);
             editor.putBoolean(getString(R.string.shared_first_time), false);
             editor.apply();
-
             farm_id.setText(details.getString(getString(R.string.shared_farm_id), "005"));
 
             barcode_load.cancel();
+            checkuser(id);
 
         }
     }
+
+    private boolean checkuser(String farm_id) {
+        String url = "http://ec2-35-154-68-218.ap-south-1.compute.amazonaws.com:8000/sf/signin?farmID="+farm_id;
+        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
+                url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    JSONObject obj = response.getJSONObject("Answer");
+                    SharedPreferences.Editor editor = details.edit();
+                    editor.putString(getString(R.string.shared_farm_contact),obj.getString("contact"));
+                    editor.putString(getString(R.string.shared_farm_aadhar), obj.getString("aadhar"));
+                    editor.putString(getString(R.string.shared_farm_city), obj.getString("location"));
+                    editor.putString(getString(R.string.shared_farm_name), obj.getString("name"));
+                    editor.putString(getString(R.string.shared_farm_no_motes), obj.getString("number_motes"));
+                    editor.putString(getString(R.string.shared_farm_soil_type), obj.getString("soil_type"));
+                    editor.apply();
+
+                    Intent intent=new Intent(SignUpActivity.this,MainActivity.class);
+                    startActivity(intent);
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    Toast.makeText(getApplicationContext(),
+                            "Error: " + e.getMessage(),
+                            Toast.LENGTH_LONG).show();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+             //   VolleyLog.d(TAG, "Error: " + error.getMessage());
+
+
+            }
+        });
+        ServerRequest.getInstance(getApplicationContext()).addRequestQueue(jsonObjReq);
+    return true;
+    }
+
 
     private void make_account() {
 
@@ -162,7 +210,7 @@ public class SignUpActivity extends AppCompatActivity {
                 param.put("Aadhar", aadhar.getText().toString());
                 param.put("Contact", contact.getText().toString());
                 param.put("Location", location.getText().toString());
-                param.put("NumMotes", numMotes.getText().toString());
+                param.put("NumberMotes", numMotes.getText().toString());
                 param.put("SoilType", soilType.getText().toString());
 
                 return param;
